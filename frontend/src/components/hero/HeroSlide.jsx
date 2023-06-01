@@ -1,21 +1,37 @@
 import React from "react";
 
-import SwiperCore, { Autoplay } from "swiper";
+import SwiperCore, { Autoplay, Navigation, Thumbs } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "./heroSlide.scss";
 
-const movieItems = ["https://shopfashi.herokuapp.com/images/2021-12-27T12-43-55.972Z-man-large.jpg"];
+
+
+const data = ["https://asset.cloudinary.com/cloudformearncdct/06da4cdd46395fdfe81637f7124449ce",
+"https://asset.cloudinary.com/cloudformearncdct/60156bc097e3158efcae72bebb8b71de",
+"https://asset.cloudinary.com/cloudformearncdct/c4a5c61e98711f49c0018647d1d0eaec"
+];
+const movieItems = [
+  "https://res.cloudinary.com/nghia285diem/image/upload/v1655100632/images_frontend/hero-1_bf7gkc.jpg",
+  "https://res.cloudinary.com/nghia285diem/image/upload/v1655100632/images_frontend/hero-1_bf7gkc.jpg",
+  "https://res.cloudinary.com/nghia285diem/image/upload/v1655100635/images_frontend/hero-2_sns3xy.jpg",
+];
 const HeroSlide = () => {
   return (
+    
     <div className="hero-slide">
       <Swiper
-        modules={[Autoplay]}
-        grabCursor={true}
-        spaceBetween={0}
-        slidesPerView={1}
-        // autoplay={{ delay: 7000 }}
-      >
+                modules={[Autoplay, Thumbs, Navigation]}
+                className="slides"
+                spaceBetween={12}
+                speed={1000}
+                tag="div"
+                autoplay={{
+                    delay: 2000,
+                    disableOnInteraction: false,
+                }}
+            >
+
         {movieItems.map((item, i) => (
           <SwiperSlide key={i}>
             {({ isActive }) => (

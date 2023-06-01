@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Pagination from "react-js-pagination";
 import Loader from "../loader/Loader";
+import Slider from "../hero/HeroSlide";
 import ProductCard from "../product/productCard/ProductCard";
 
 import "./shop.scss";
@@ -89,6 +90,7 @@ const Shop = () => {
         <>
             <Header />
             <div className="app__container">
+                <Slider/>
                 <div className="grid wide">
                     <div className="row sm-gutter app__content">
                         <div className="col l-2 m-0 c-0">

@@ -3,11 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ant-design/icons": "^5.1.4",
     "@greatsumini/react-facebook-login": "^3.3.3",
     "@mapbox/mapbox-gl-geocoder": "^5.0.1",
     "@material-ui/lab": "^4.0.0-alpha.61",
     "@reduxjs/toolkit": "^1.8.2",
     "@stripe/react-stripe-js": "^2.1.0",
+    "antd": "^5.5.2",
     "axios": "^0.26.1",
     "chart.js": "^3.7.1",
     "cra-template": "1.1.3",

@@ -33,68 +33,90 @@ const MeProfile = () => {
             <h1 className="index__profile--heading--item">Thông tin cá nhân</h1>
           </div>
           <div className="wrap__info">
-            <div className="contain__img">
-              <div>
-                <img src={avatar} alt="" />
-              </div>
-            </div>
-            <div className="row sm-gutter">
-              <div className="col l-4 set__height">
-                <div className="index__profile--content--item">
-                  <h3 className="index__profile--content-heading">Họ tên</h3>
-                  <div className="index__profile--content-info">
-                    {user.name}
-                  </div>
+            <div className="wrap__information">
+              <div className="contain__img">
+                <div>
+                  <img src={avatar} alt="" />
                 </div>
               </div>
-              <div className="col l-4 set__height">
+              <div className="row sm-gutter">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <h3 className="index__profile--content-heading">Họ tên</h3>
+                      </td>
+                      <td>
+                        <div className="index__profile--content-info">
+                          {user.name}
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <h3 className="index__profile--content-heading">
+                          Địa chỉ email
+                        </h3>
+                      </td>
+                      <td>
+                        <div className="index__profile--content-info">
+                          {user.email}
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <h3 className="index__profile--content-heading">
+                          Số điện thoại
+                        </h3>
+                      </td>
+                      <td>
+                        <div className="index__profile--content-info">
+                          {user.phone ? (
+                            user.phone
+                          ) : (
+                            <span>Vui lòng nhập số điện thoại của bạn</span>
+                          )}
+                        </div>
+                      </td>
+                    </tr>
+                    {/* <tr>
+                      <td><h3 className='index__profile--content-heading'>Ngày sinh</h3></td>
+                      <td>
+                        <div className="index__profile--content-info">
+                          {user.date ? user.date : <span>Vui lòng nhập số ngày sinh của bạn</span>}
+                        </div>
+                      </td>
+                    </tr> */}
+                    <tr>
+                      <td>
+                        <h3 className="index__profile--content-heading">Giới tính</h3>
+                      </td>
+                      <td>
+                        <div className="index__profile--content-info">
+                          {user.sex ? (
+                            user.sex === 2 ? (
+                              "Nữ"
+                            ) : (
+                              "Nam"
+                            )
+                          ) : (
+                            <span>Vui lòng nhập số giới tính của bạn</span>
+                          )}
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+          {/* <div className="col l-4 set__height">
                 <div className="index__profile--content--item">
-                  <h3 className="index__profile--content-heading">
-                    Địa chỉ email
-                  </h3>
+                  <h3 className='index__profile--content-heading'>Ngày sinh</h3>
                   <div className="index__profile--content-info">
-                    {user.email}
+                  {user.date ? user.date : <span>Vui lòng nhập số ngày sinh của bạn</span>}
                   </div>
                 </div>
-              </div>
-              <div className="col l-4 set__height">
-                <div className="index__profile--content--item">
-                  <h3 className="index__profile--content-heading">
-                    Số điện thoại
-                  </h3>
-                  <div className="index__profile--content-info">
-                    {user.phone ? (
-                      user.phone
-                    ) : (
-                      <span>Vui lòng nhập số điện thoại của bạn</span>
-                    )}
-                  </div>
-                </div>
-              </div>
-              {/* <div className="col l-4 set__height">
-          <div className="index__profile--content--item">
-            <h3 className='index__profile--content-heading'>Ngày sinh</h3>
-            <div className="index__profile--content-info">
-            {user.date ? user.date : <span>Vui lòng nhập số ngày sinh của bạn</span>}
-            </div>
-          </div>
-        </div> */}
-              <div className="col l-4 set__height">
-                <div className="index__profile--content--item">
-                  <h3 className="index__profile--content-heading">Giới tính</h3>
-                  <div className="index__profile--content-info">
-                    {user.sex ? (
-                      user.sex === 2 ? (
-                        "Nữ"
-                      ) : (
-                        "Nam"
-                      )
-                    ) : (
-                      <span>Vui lòng nhập số giới tính của bạn</span>
-                    )}
-                  </div>
-                </div>
-              </div>
+              </div> */}
             </div>
             <div className="contain__button">
               <Link to="/me/update" className="btn">
@@ -106,7 +128,6 @@ const MeProfile = () => {
             </div>
           </div>
         </>
-      
     </div>
   );
 };

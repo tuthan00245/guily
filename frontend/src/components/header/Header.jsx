@@ -10,6 +10,7 @@ import { deleteCartUser, getMyCarts } from "../../redux/toolkits/cartSlice";
 import { deleteOneSignalunSub } from "../../api/onesignalController";
 import axios from "axios";
 
+
 const Header = () => {
     const dispatch = useDispatch();
     let isAuthenticated = localStorage.getItem("isAuthenticated");
@@ -195,7 +196,8 @@ const Header = () => {
 
     return (
         <>
-            <header className="header">
+            <header className="header" id="container-stars">
+                <div className="main"></div>
                 <div className="grid wide">
                     <div className="header__navbar hide-on-mobile-tablet">
                         <ul className="header__navbar-list">
@@ -463,17 +465,25 @@ const Header = () => {
                                 />
                             </Link>
                         </div>
-                        <div className="header__search--find">
-                            <div className="header__search--filler">
+                        <div className="header__search--input">
+                            <div className="input-wrapper">
+                                <button 
+                                onClick={searchSubmitHandler}
+                                className="icon"> 
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="25px" width="25px">
+                                    <path stroke-linejoin="round" stroke-linecap="round" stroke-width="1.5" stroke="#fff" d="M11.5 21C16.7467 21 21 16.7467 21 11.5C21 6.25329 16.7467 2 11.5 2C6.25329 2 2 6.25329 2 11.5C2 16.7467 6.25329 21 11.5 21Z"></path>
+                                    <path stroke-linejoin="round" stroke-linecap="round" stroke-width="1.5" stroke="#fff" d="M22 22L20 20"></path>
+                                    </svg>
+                                </button>
                                 <input
-                                    // onFocus={handleSetFinding}
                                     onClick={handleClickResults}
                                     ref={historyRef}
                                     value={keyword}
                                     onInput={handleSetFinding}
                                     onChange={handleOnChange}
                                     type="text"
-                                    className="header__search-text"
+                                    name="text"
+                                    className="input"
                                     placeholder="Nhập để tìm kiếm"
                                 />
                                 {keyword && (
@@ -499,42 +509,27 @@ const Header = () => {
                                                           .slice(0, 4)
                                                           .map((history, i) => (
                                                               <li
-                                                                  onClick={(
-                                                                      e
-                                                                  ) => {
-                                                                      handleCheckoutHistory(
-                                                                          e,
-                                                                          history
-                                                                      );
-                                                                  }}
+                                                                  onClick={(e) => {handleCheckoutHistory(e,history);}}
                                                                   key={i}
-                                                                  className="header__history-item"
-                                                              >
+                                                                  className="header__history-item">
                                                                   <Link
                                                                       to="#"
-                                                                      className="header__history--link"
-                                                                  >
+                                                                      className="header__history--link">
                                                                       {history}
                                                                   </Link>
                                                               </li>
                                                           ))
-                                                    : ""
-                                                //   <li className="header__history-item">
-                                                //   <Link to="#" className="header__history--link">
-                                                //     Bạn chưa tìm kiếm gì cả.
-                                                //   </Link>
-                                                // </li>
+                                                :
+                                                <li className="header__history-item">
+                                                    <Link to="#" className="header__history--link">
+                                                    Bạn chưa tìm kiếm gì cả.
+                                                    </Link>
+                                                </li>
                                             }
                                         </ul>
                                     </div>
                                 )}
                             </div>
-                            <button
-                                onClick={searchSubmitHandler}
-                                className="btn primary-btn header__search--finding"
-                            >
-                                <i className="fas fa-search header__search--finding-item"></i>
-                            </button>
                         </div>
                         <div className="header__cart">
                             <i className="fas fa-shopping-cart header__cart--icon"></i>
@@ -666,6 +661,7 @@ const Header = () => {
                         </div>
                     </div>
                 </div>
+                
             </header>
         </>
     );
