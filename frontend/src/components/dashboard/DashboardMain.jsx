@@ -5,6 +5,8 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { getAllUser } from "../../redux/toolkits/userAdminSlice";
 import { getProductRedux } from "../../redux/toolkits/productSlice";
+
+
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -16,7 +18,7 @@ import {
     Legend,
     ArcElement,
 } from "chart.js";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import Loader from "../loader/Loader";
 import { convertOrderStatus } from "../../utils/convertOrderStatus";
 import { listOrderStatus } from "../../utils/listOrderStatus";
@@ -50,7 +52,6 @@ const DashboardMain = () => {
 
     const [users, setUsers] = useState([]);
     const [products, setProducts] = useState([]);
-
     const [isLoading, setIsLoading] = useState(false);
     const [orders, setOrder] = useState([]);
     const [summaryOrder, setSummaryOrder] = useState([]);
@@ -166,92 +167,154 @@ const DashboardMain = () => {
     };
 
     return (
-        // <Line options={options} data={data} />
-        <div className="col l-10">
-            {isLoading ? (
-                <>
-                    <h1
-                        className="title__dashboard"
-                        style={{ marginTop: "3rem", marginBottom: "3rem" }}
-                    >
-                        THÔNG SỐ ĐƠN HÀNG
-                    </h1>
-                    <div
-                        style={{
-                            display: "flex",
-                            justifyContent: "space-between",
-                            alignItems: "center",
-                            flexWrap: "wrap",
-                            margin: "auto",
-                            width: "900px",
-                            marginBottom: "5rem",
-                            border: "1px solid #999",
-                            borderRadius: "3px",
-                        }}
-                    >
-                        {listOrderStatus?.map((item, i) => (
-                            <Link
-                                to={"/dashboard/orders"}
-                                className="hoverListOrderStatus"
+        <>
+            <div className="db_container">
+                <div className="main_wrap">
+                    <div className="row">
+                        <div className="col-md-5">
+                            <div className="portlet">
+                                <div class="portlet-body">
+                                    <div class="box-menu row">
+                                        <div class="col-xs-12">
+                                            <div class="item-box-menu box-df">
+                                                <h3 class="name" lang="db-nhacnho">Nhắc nhở mới, chưa xem</h3>
+                                                <div class="desc clearfix">
+                                                    <div class="number" style={{width:"110px !important;"}}>0</div>
+                                                    <div class="text-runing" style={{width:"100%;", height:"51px;"}}>
+                                                    </div>
+                                                    <div class="icon-menu text-right">
+                                                        <i class="icon fa fa-bell-o" aria-hidden="true"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="text-left">
+                                                    <a href="/ghi-chu-nhac-nho-sinh-vien.html" class="color-active" lang="db-chitiet-button">Xem chi tiết</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <a href="/lich-theo-tuan.html?pLoaiLich=1" class="color-active" title="">
+                                                <div class="item-box-menu box-df">
+                                                    <h3 class="name" lang="db-lichhoctuan">Lịch học trong tuần</h3>
+                                                    <div class="desc clearfix">
+                                                        <div class="number">0</div>
+                                                        <div class="icon-menu text-right">
+                                                            <i class="icon fa fa-calendar" aria-hidden="true"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-left" lang="db-chitiet-button">
+                                                        Xem chi tiết
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <a href="/lich-theo-tuan.html?pLoaiLich=2" class="color-active" title="">
+                                                <div class="item-box-menu box-df">
+                                                    <h3 class="name" lang="db-lichthituan">Lịch thi trong tuần</h3>
+                                                    <div class="desc clearfix">
+                                                        <div class="number">0</div>
+                                                        <div class="icon-menu text-right">
+                                                            <i class="icon fa fa-calendar-check-o" aria-hidden="true"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-left" lang="db-chitiet-button">
+                                                        Xem chi tiết
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="col l-10">
+                    {isLoading ? (
+                        <>
+                            <h1
+                                className="title__dashboard"
+                                style={{ marginTop: "3rem", marginBottom: "3rem" }}
+                            >
+                                THÔNG SỐ ĐƠN HÀNG
+                            </h1>
+                            <div
                                 style={{
-                                    width: "170px",
-                                    height: "170px",
                                     display: "flex",
-                                    flexDirection: "column",
+                                    justifyContent: "space-between",
                                     alignItems: "center",
-                                    padding: "20px 0px",
-                                    color: "black",
-                                    textDecoration: "unset",
+                                    flexWrap: "wrap",
+                                    margin: "auto",
+                                    width: "900px",
+                                    marginBottom: "5rem",
+                                    border: "1px solid #999",
+                                    borderRadius: "3px",
                                 }}
                             >
-                                <h4
-                                    style={{
-                                        fontSize: "24px",
-                                        color: "hwb(205 6% 9%)",
-                                    }}
-                                >
-                                    {
-                                        handleFindOrderStatus(
-                                            item,
-                                            summaryOrder
-                                        )?.count
-                                    }
-                                </h4>
-                                <h5
-                                    style={{
-                                        fontWeight: "500",
-                                        fontSize: "13px",
-                                    }}
-                                >
-                                    {convertOrderStatus(
-                                        handleFindOrderStatus(
-                                            item,
-                                            summaryOrder
-                                        )?._id
-                                    )}
-                                </h5>
-                            </Link>
-                        ))}
-                    </div>
-
-                    <div
-                        className="chart__dashboard"
-                        style={{ marginTop: "4rem", marginInline: "4rem" }}
-                    >
-                        <div className="lineChart">
-                            <h1>BẢNG THỐNG KÊ DOANH THU</h1>
-                            <Line data={lineState} />
-                        </div>
-                        {/* <div className="doughnutChart">
-              <h1>BIỂU ĐỒ THỐNG KÊ SẢN PHẨM</h1>
-              <Doughnut data={doughnutState} />
-            </div> */}
-                    </div>
-                </>
-            ) : (
-                <Loader />
-            )}
-        </div>
+                                {listOrderStatus?.map((item, i) => (
+                                    <Link
+                                        to={"/dashboard/orders"}
+                                        className="hoverListOrderStatus"
+                                        style={{
+                                            width: "170px",
+                                            height: "170px",
+                                            display: "flex",
+                                            flexDirection: "column",
+                                            alignItems: "center",
+                                            padding: "20px 0px",
+                                            color: "black",
+                                            textDecoration: "unset",
+                                        }}
+                                    >
+                                        <h4
+                                            style={{
+                                                fontSize: "24px",
+                                                color: "hwb(205 6% 9%)",
+                                            }}
+                                        >
+                                            {
+                                                handleFindOrderStatus(
+                                                    item,
+                                                    summaryOrder
+                                                )?.count
+                                            }
+                                        </h4>
+                                        <h5
+                                            style={{
+                                                fontWeight: "500",
+                                                fontSize: "13px",
+                                            }}
+                                        >
+                                            {convertOrderStatus(
+                                                handleFindOrderStatus(
+                                                    item,
+                                                    summaryOrder
+                                                )?._id
+                                            )}
+                                        </h5>
+                                    </Link>
+                                ))}
+                            </div>
+                            <div
+                                className="chart__dashboard"
+                                style={{ marginTop: "4rem", marginInline: "4rem" }}
+                            >
+                                <div className="lineChart">
+                                    <h1>BẢNG THỐNG KÊ DOANH THU</h1>
+                                    <Line data={lineState} />
+                                </div>
+                                {/* <div className="doughnutChart">
+                    <h1>BIỂU ĐỒ THỐNG KÊ SẢN PHẨM</h1>
+                    <Doughnut data={doughnutState} />
+                    </div> */}
+                            </div>
+                        </>
+                    ) : (
+                        <Loader />
+                    )}
+                </div>
+            </div>
+        </>
     );
 };
 

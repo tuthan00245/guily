@@ -1,3 +1,12 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    // font-size: 100%;
+    vertical-align: baseline;
+}
+
+
 .lineChart {
     width: 900px;
     margin: 0 auto;
@@ -8,6 +17,7 @@
     align-items: center;
     margin-bottom: 6rem;
 }
+
 
 .doughnutChart {
     display: flex;
@@ -78,4 +88,138 @@
 .hoverListOrderStatus:hover {
     background-color: #0000000a;
     cursor: pointer;
+}
+
+body {
+    background: #e7ecf0;
+    color: #667580;
+    font-size: 12px;
+    font-family: Tahoma !important;
+}
+.db_container{
+    width: 970px;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+
+.row {
+    margin-right: -7.5px;
+    margin-left: -7.5px;
+}
+.col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+    padding-right: 7.5px;
+    padding-left: 7.5px;
+}
+.db_container .col-md-7 {
+    width: 58.33333333%;
+}
+.db_container .col-md-5 {
+    // width: 41.66666667%;
+    width: 100%;
+}
+.box-df {
+    background-color: #fff;
+    min-height: 20px;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 4px !important;
+}
+.db_container .profile-ds-info {
+    height: 248px;
+    overflow: hidden;
+}
+
+.portlet {
+    margin-top: 0;
+    margin-bottom: 25px;
+    padding: 0;
+    border-radius: 4px;
+}
+.db_container .portlet {
+    margin-bottom: 0;
+}
+.portlet>.port-title {
+    border-bottom: 1px solid #eee;
+    padding: 0;
+    margin-bottom: 10px;
+    min-height: 41px;
+    -webkit-border-radius: 4px 4px 0 0;
+    -moz-border-radius: 4px 4px 0 0;
+    -ms-border-radius: 4px 4px 0 0;
+    -o-border-radius: 4px 4px 0 0;
+    border-radius: 4px 4px 0 0;
+}
+.portlet>.port-title>.caption {
+    float: left;
+    display: inline-block;
+    font-size: 18px;
+    line-height: 18px;
+    padding: 10px 0;
+}
+.bold {
+    font-weight: 700!important;
+}
+.portlet>.port-body {
+    clear: both;
+    -webkit-border-radius: 0 0 4px 4px;
+    -moz-border-radius: 0 0 4px 4px;
+    -ms-border-radius: 0 0 4px 4px;
+    -o-border-radius: 0 0 4px 4px;
+    border-radius: 0 0 4px 4px;
+}
+.col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+    position: relative; 
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.portlet>.portlet-body {
+    clear: both;
+    -webkit-border-radius: 0 0 4px 4px;
+    -moz-border-radius: 0 0 4px 4px;
+    -ms-border-radius: 0 0 4px 4px;
+    -o-border-radius: 0 0 4px 4px;
+    border-radius: 0 0 4px 4px;
+}
+.db_container .col-xs-12 {
+    width: 100%;
+}
+.db_container .col-xs-6{
+    width: 50%;
+}
+.box-menu .item-box-menu {
+    width: 100%;
+    padding: 15px;
+    height: 116px;
+    overflow: hidden;
+    box-shadow: -1px 1px 6px 0px rgba(0, 0, 0, 0.10);
+}
+.box-menu .item-box-menu .desc {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.text-left {
+    text-align: left;
+}
+.color-active {
+    color: #1da1f2;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+}
+.box-menu .col-xs-6:nth-child(2) .item-box-menu {
+    background: #e0fbff;
+    color: #4da1e8;
+}
+.box-menu .col-xs-6:nth-child(3) .item-box-menu {
+    background: #fff2d4;
+    color: #ff9205;
 }

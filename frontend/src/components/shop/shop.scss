@@ -36,6 +36,15 @@
     margin: 0px;  
     
 }
+.menu_1{
+    display: none;
+    li{
+        padding-left: 10px;
+    }
+}
+.menu li:hover ul{
+    display: block;
+}
 .category__heading--item-link:hover
 {
    color:var(--mainestt-color);

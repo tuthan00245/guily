@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "./dashboardCreateProduct.scss";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -13,11 +13,23 @@ const DashBoardCreateCategory = () => {
     const history = useNavigate();
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
+    const [brand, setBrand] = useState("");
     const [shortContent, setShortContent] = useState("");
     const [type, setType] = useState("normal");
-
+    const [brands, setBrands] = useState([]);
     const { loading } = useSelector((state) => state.productState);
-
+    
+    useEffect(() => {
+        const getCategories = async () => {
+            try {
+                const { data } = await axios.get("/api/v1/admin/categories");
+                setBrands(data.categories);
+            } catch (error) {
+                console.log(error.response.data.message);
+            }
+        };
+        getCategories();
+    }, []);
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (1) {
@@ -25,6 +37,7 @@ const DashBoardCreateCategory = () => {
                 await axios.post("/api/v1/admin/category/new", {
                     title,
                     description: content,
+                    brand:brand,
                 });
                 history("/dashboard/categories");
                 toast.success("Danh mục sản phẩm mới vừa được tạo thành công");
@@ -70,6 +83,27 @@ const DashBoardCreateCategory = () => {
                             setContent(e.target.value);
                         }}
                     />
+                </div>
+                <div className="form-group">
+                    <div className="form-group__align">
+                        <label htmlFor="category">Loại</label>
+                    </div>
+
+                    <select
+                        className="input__dashboard"
+                        name="update"
+                        id=""
+                        onChange={(e) => {
+                            setBrand(e.target.value);
+                        }}
+                    >
+                        <option value="">Chọn danh mục Sản phẩm</option>
+                        {brands?.map((cate, i) => (
+                            <option value={cate._id} key={i}>
+                                {cate.title}
+                            </option>
+                        ))}
+                    </select>
                 </div>
 
                 <button className="btn" onClick={handleSubmit}>

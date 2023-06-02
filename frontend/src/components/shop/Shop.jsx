@@ -15,6 +15,7 @@ const Shop = () => {
     const dispatch = useDispatch();
     const [products, setProducts] = useState([]);
     const [category, setCategory] = useState("");
+    const [fake_category, setFCategory] = useState("");
     const [productsCount, setProductCount] = useState(1);
     const [resultPerPage, setResultPerPage] = useState(0);
     const [isLoading, setIsLoading] = useState(false);
@@ -60,7 +61,6 @@ const Shop = () => {
             try {
                 const { data } = await axios.get("/api/v1/admin/categories");
                 setCategories(data.categories);
-                console.log(data.categories);
             } catch (error) {
                 console.log(error.response.data.message);
             }
@@ -99,7 +99,7 @@ const Shop = () => {
                                     <i className="fas fa-list category__heading-icon"></i>
                                     Danh Mục
                                 </h3>
-                                <ul className="category__heading--list">
+                                <ul className="menu category__heading--list">
                                     <li
                                         className="category__heading--item"
                                         onClick={() => {
@@ -112,20 +112,37 @@ const Shop = () => {
                                             ALL
                                         </span>
                                     </li>
-                                    {categories.length > 0
+                                    {
+                                        categories.length > 0
                                         ? categories.map((cate, i) => (
-                                              <li
+                                            cate.brand ===''?
+                                            <li
                                                   key={i}
                                                   onClick={() => {
-                                                      setCategory(cate._id);
-                                                      setCurrentPage(1);
+                                                    // document.getElementsByClassName("menu_1 category__heading--list")[100].style.display = "block";                                                   //   setCategory(cate._id);
+                                                    //   setCurrentPage(1);
                                                   }}
                                                   className="category__heading--item "
                                               >
                                                   <span className="category__heading--item-link">
                                                       {cate.title}
                                                   </span>
-                                              </li>
+                                                   {categories.map((cate1,j) => (
+                                                    cate1.brand === cate._id?
+                                                    <ul className="menu_1 category__heading--list">
+                                                        <li
+                                                            key={j}
+                                                            onClick={() =>{
+                                                                setCategory(cate1._id);
+                                                                setCurrentPage(1);
+                                                            }}
+                                                            className="category__heading--item"
+                                                        >
+                                                            <span className="category__heading--item-link">{cate1.title}</span>
+                                                        </li>
+                                                    </ul>:"" 
+                                                ))} 
+                                              </li>:''
                                           ))
                                         : ""}
                                 </ul>

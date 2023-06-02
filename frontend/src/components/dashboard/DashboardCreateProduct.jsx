@@ -70,9 +70,10 @@ const DashboardCreateProduct = () => {
             Stock !== 0 &&
             sale !== 0 &&
             moneyShip !== 0 &&
-            images.length !== 0 &&
-            category
-        ) {
+            images.length !== 0
+            ) 
+        {
+            
             try {
                 await dispatch(
                     createProduct({
@@ -89,9 +90,12 @@ const DashboardCreateProduct = () => {
                 ).unwrap();
                 history("/dashboard/products");
                 toast.success("Sản phẩm mới vừa được tạo thành công");
-            } catch (error) {
-                console.log(error.response.data.message);
+            } catch (err) {
+                console.log(
+                    
+                );
             }
+
         } else {
             toast.error(`Vui lòng nhập đầy đủ và chính xác thông tin!`);
         }

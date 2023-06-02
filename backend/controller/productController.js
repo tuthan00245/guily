@@ -5,6 +5,7 @@ const ApiFeatures = require("../utils/apifeatures");
 const cloudinary = require("cloudinary");
 
 exports.createProduct = catchAsyncError(async (req, res, next) => {
+    console.log('in')
     let images = [];
 
     if (typeof req.body.images === "string") {
@@ -15,15 +16,19 @@ exports.createProduct = catchAsyncError(async (req, res, next) => {
 
     const imagesLinks = [];
 
-    for (let i = 0; i < images.length; i++) {
-        const result = await cloudinary.v2.uploader.upload(images[i], {
-            folder: "products",
-        });
-
-        imagesLinks.push({
-            public_id: result.public_id,
-            url: result.secure_url,
-        });
+    try{
+        for (let i = 0; i < images.length; i++) {
+            const result = await cloudinary.v2.uploader.upload(images[i], {
+                folder: "products",
+            });
+    
+            imagesLinks.push({
+                public_id: result.public_id,
+                url: result.secure_url,
+            });
+        }
+    }catch(err) {
+        console.log(err)
     }
 
     req.body.images = imagesLinks;

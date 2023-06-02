@@ -14,12 +14,12 @@ const footer = () => {
               <img src={earth} alt="the earth" className="footer__second--img-logo-img"/>
                 <span className="footer__second--img-logo-span">NDN-COMPANY</span>
             </div>
-            <p className="footer__second-para">Công ty trách nhiệm hữu hạn một thành viên Đình Nghĩa</p>
+            <p className="footer__second-para">Công ty trách nhiệm hữu hạn một thành viên</p>
             <p className="footer__second-para"><strong> Địa chỉ </strong>: Thôn Điện Biên I - Eakar mút - Eakar
               -
               Đaklak</p>
-            <p className="footer__second-para"><strong> Điện thoại </strong>: 0389960079 / Gmail:
-              nguyendinhnghiaqwerty@gmail.com</p>
+            <p className="footer__second-para"><strong> Điện thoại </strong>: 0999.999.999 / Gmail:
+              info@gmail.com</p>
             <p className="footer__second-para"><strong> Giờ làm việc </strong>: Sáng 6h30 - 11h45 / Trưa 12h30 -
               5h45</p>
 
@@ -58,11 +58,11 @@ const footer = () => {
                 <h3 className="footer__second--heading-sc">Đăng kí nhận tin mới</h3>
                 <p className="footer__second-para">Xin vui lòng để lại địa chỉ Email, chúng tôi sẽ cập nhật
                   những thông tin mới tới quý khách</p>
-                <input type="text" className="footer__second--input" placeholder="Họ và tên" />
+                {/* <input type="text" className="footer__second--input" placeholder="Họ và tên" />
                 <input type="text" className="footer__second--input" placeholder="Email" />
                 <button className="btn primary-btn btn-btn-footer">
                   Submit
-                </button>
+                </button> */}
               </div>
             </div>
           </div>

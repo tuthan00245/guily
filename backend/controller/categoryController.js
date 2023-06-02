@@ -6,7 +6,10 @@ const catchAsyncError = require("../middleware/catchAsyncError");
 const OneSignalUtil = require("../utils/onesignal");
 
 exports.createCategory = catchAsyncError(async (req, res, next) => {
-    const category = await Category.create(req.body);
+    const category = await Category.create({
+        ...req.body,
+        brand : req.body.brand,
+    });
 
     res.status(201).json({
         success: true,

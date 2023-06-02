@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import Logo from "../../assets/img/cart-logo-main.svg";
+import Logo from "../../assets/img/images.png";
 import "./header.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductRedux } from "../../redux/toolkits/productSlice";

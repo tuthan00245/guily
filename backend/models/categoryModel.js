@@ -15,6 +15,7 @@ const Category = new mongoose.Schema({
         type: Boolean,
         default: false,
     },
+    brand:{type: mongoose.Schema.Types.String}
 });
 
 module.exports = mongoose.model("Category", Category);

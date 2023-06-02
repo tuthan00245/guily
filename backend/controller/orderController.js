@@ -276,8 +276,7 @@ exports.updateOrder = catchAsyncError(async (req, res, next) => {
             data,
             oneSignalPlayerIds: [oneSignal.oneSignalId],
         });
-        notificationSave.lastSendAt = moment().unix();
-        await notificationSave.save();
+        
     }
 });
 
