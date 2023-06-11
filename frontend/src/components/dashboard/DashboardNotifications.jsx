@@ -31,7 +31,6 @@ const DashboardNotifications = () => {
             try {
                 const data = await dispatch(getNotificationRedux()).unwrap();
                 setOrders(data.notifications);
-                console.log(data.notifications);
             } catch (error) {
                 console.log(error.response.data.message);
             }
@@ -125,8 +124,9 @@ const DashboardNotifications = () => {
     const customStyles = {
         rows: {
             style: {
-                minHeight: "62px !important", // override the row height
+                minHeight: '48px',// override the row height
                 flex: "0",
+                width: '80% !important',
             },
         },
     };
@@ -165,7 +165,7 @@ const DashboardNotifications = () => {
                     data={orders}
                     pagination
                     fixedHeader
-                    fixedHeaderScrollHeight="500px"
+                    fixedHeaderScrollHeight=""
                     selectableRows
                     customStyles={customStyles}
                     selectableRowsHighlight={false}

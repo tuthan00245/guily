@@ -53,8 +53,8 @@ export const deleteMutipleOrder = createAsyncThunk(
 export const updateOrder = createAsyncThunk(
   'orders/update_order',
   async (payload, thunkApi) => {
-      const data = orderApi.updateOrder(payload)
-      return data 
+    const data = orderApi.updateOrder(payload)
+    return data 
   }
 )
 

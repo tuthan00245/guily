@@ -19,17 +19,16 @@ const DashboardCategories = () => {
     const [categories, setCategories] = useState([]);
 
     const { loading } = useSelector((state) => state.orderState);
-
     useEffect(() => {
         const getCategories = async () => {
             try {
                 const { data } = await axios.get("/api/v1/admin/categories");
                 setCategories(data.categories);
-                console.log(data.categories);
             } catch (error) {
                 console.log(error.response.data.message);
             }
         };
+        
         getCategories();
     }, [keyFresh]);
 
@@ -38,7 +37,7 @@ const DashboardCategories = () => {
             await axios.delete(`/api/v1/admin/category/${row._id}`);
             setKeyFresh((oldv) => oldv + 1);
             toast.success("Danh mục vừa được xóa thành công!");
-            setCountSelected(0);
+            setCountSelected();
         } catch (error) {
             console.log(error.data.response.message);
             toast.error("Danh mục chưa được xóa!");
@@ -116,6 +115,15 @@ const DashboardCategories = () => {
     };
     const handleDeleteMutiple = async () => {
         try {
+            // const getDeleted = async (data) => {
+            //     try{
+            //         const {count} = await axios.get("/api/v1/admin/category");
+            //         console.log(count)
+            //     }catch(err){
+            //         console.log(err.response.data.message)
+            //     }
+            // }
+            // getDeleted();
             //   await dispatch(deleteMutipleOrder({ id: arrayId })).unwrap();
             setKeyFresh((oldv) => oldv + 1);
             toast.success("Đơn hàng vừa được xóa thành công!");

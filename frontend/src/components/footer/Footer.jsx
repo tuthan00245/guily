@@ -12,10 +12,10 @@ const footer = () => {
           <div className="col l-6">
             <div className="footer__second--img-logo">
               <img src={earth} alt="the earth" className="footer__second--img-logo-img"/>
-                <span className="footer__second--img-logo-span">NDN-COMPANY</span>
+                <span className="footer__second--img-logo-span">MOTOR-CYCLE</span>
             </div>
             <p className="footer__second-para">Công ty trách nhiệm hữu hạn một thành viên</p>
-            <p className="footer__second-para"><strong> Địa chỉ </strong>: Thôn Điện Biên I - Eakar mút - Eakar
+            <p className="footer__second-para"><strong> Địa chỉ </strong>: Quận 1 - Thành Phố Hồ Chí Minh
               -
               Đaklak</p>
             <p className="footer__second-para"><strong> Điện thoại </strong>: 0999.999.999 / Gmail:

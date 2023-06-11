@@ -38,8 +38,10 @@ const DashboardUpdateOrder = () => {
         try {
             if (status !== "") {
                 await dispatch(updateOrder({ id, status })).unwrap();
+                // console.log(2);
                 toast.success("Đơn hàng vừa được cập nhật!");
                 history("/dashboard/orders");
+                // console.log(user);
             } else {
                 toast.error("Vui lòng chọn trạng thái đơn hàng!");
             }

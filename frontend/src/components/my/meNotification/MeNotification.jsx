@@ -19,6 +19,7 @@ const MeNotification = () => {
             const { data } = await axios.get("/api/v1/notifications", {
                 params: { type: active },
             });
+            console.log(data.notifications)
             setNotifications(data.notifications);
             const res = await axios.get("/api/v1/summary/notifications");
             setAdminTotal(res.data.admin);
@@ -95,7 +96,7 @@ const MeNotification = () => {
                             <Link
                                 to={
                                     item.type === "order" &&
-                                    `/myorder/${item.order._id}`
+                                    `/myorder/${item._id}`
                                 }
                                 style={{
                                     cursor:

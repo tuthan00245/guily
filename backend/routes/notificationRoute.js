@@ -19,7 +19,9 @@ const router = express.Router();
 router
     .route("/admin/notifications")
     .get(isAuthenticatedUser, authorizeRoles("admin"), getAllNotificationAdmin);
-router.route("/notifications").get(isAuthenticatedUser, getAllNotificationUser);
+router
+    .route("/notifications")
+    .get(isAuthenticatedUser, getAllNotificationUser);
 router
     .route("/summary/notifications")
     .get(isAuthenticatedUser, summaryNotifications);

@@ -56,3 +56,21 @@ exports.getAllCategories = catchAsyncError(async (req, res, next) => {
         categories,
     });
 });
+exports.dropCategory = catchAsyncError(async (req, res, next) => {
+    const categoryId = req.params.id;
+
+    await Category.findById(categoryId);
+
+    res.status(201).json({
+        success: true,
+    });
+});
+
+exports.getAllCategory = catchAsyncError(async (req, res, next) => {
+    const categories = await Category.find({ isDeleted: true });
+
+    return res.status(200).json({
+        success: true,
+        categories,
+    });
+});
