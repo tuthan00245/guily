@@ -14,27 +14,42 @@ import MeProfile from "./components/my/meProfile/MeProfile";
 import MePassword from "./components/my/mePassword/MePassword";
 import MeAddress from "./components/my/meAddress/MeAddress";
 import ProtectedRoute from "./components/protectedRoute/ProtectedRoute";
+
+
 import Dashboard from "./components/dashboard/Dashboard";
 import DashboardMain from "./components/dashboard/DashboardMain.jsx";
+
 import DashboardProducts from "./components/dashboard/DashboardProducts";
+    import DashboardCreateProduct from "./components/dashboard/DashboardCreateProduct"; 
+    import DashboardUpdateProduct from "./components/dashboard/DashboardUpdateProduct";
+
+import DashboardManage from "./components/dashboard/DashboardManage.jsx";
+    import ManageSlide from "./components/dashboard/DashboardMSlide.jsx";
+    // import ManageContact from "./components/dashboard/Manage/contact/contact";
+    // import ManageInfo from "./components/dashboard/Manage/info/info";
+
 import DashboardUsers from "./components/dashboard/DashboardUsers";
-import DashboardOrders from "./components/dashboard/DashboardOrders";
-import DashboardCreateProduct from "./components/dashboard/DashboardCreateProduct";
-import DashboardUpdateOrder from "./components/dashboard/DashboardUpdateOrder";
-import DashboardUpdateProduct from "./components/dashboard/DashboardUpdateProduct";
 import DashboardUpdateUserRole from "./components/dashboard/DashboardUpdateUserRole";
+
+import DashboardOrders from "./components/dashboard/DashboardOrders";
+    import DashboardUpdateOrder from "./components/dashboard/DashboardUpdateOrder";
+
+import DashboardCategories from "./components/dashboard/DashboardCategories";
+    import DashBoardCreateCategory from "./components/dashboard/DashboardCreateCategory";
+    import DashBoardUpdateCategory from "./components/dashboard/DashboardUpdateCategory";
+
+import DashboardNotifications from "./components/dashboard/DashboardNotifications";
+    import DashBoardCreateNotification from "./components/dashboard/DashboardCreateNotification";
+    import DashBoardUpdateNotification from "./components/dashboard/DashboardUpdateNotification";
+
+
 import Login from "./components/authentication/login/Login";
 import Register from "./components/authentication/register/Register";
 import MeUpdatePassword from "./components/authentication/meUpdatePassword/MeUpdatePassword";
 import Forgot from "./components/authentication/forgot/Forgot";
 import { getUser } from "./redux/toolkits/userSlice";
 import ResetPassword from "./components/authentication/resetPassword/ResetPassword";
-import DashBoardCreateNotification from "./components/dashboard/DashboardCreateNotification";
-import DashboardNotifications from "./components/dashboard/DashboardNotifications";
-import DashBoardUpdateNotification from "./components/dashboard/DashboardUpdateNotification";
-import DashboardCategories from "./components/dashboard/DashboardCategories";
-import DashBoardCreateCategory from "./components/dashboard/DashboardCreateCategory";
-import DashBoardUpdateCategory from "./components/dashboard/DashboardUpdateCategory";
+
 import axios from "axios";
 
 import runOneSignal from "./onsignal";
@@ -139,49 +154,78 @@ function App() {
                     }
                 >
                     <Route path="main" element={<DashboardMain />} />
-                    <Route path="products" element={<DashboardProducts />} />
+                    
+                    {/* DB-report */}
+                    <Route path="report" element={<DashboardMain />} />
+                    
+                    {/* DB-user */}
                     <Route path="users" element={<DashboardUsers />} />
+                        <Route
+                            path="update/user/:id"
+                            element={<DashboardUpdateUserRole />}
+                        />
+                    
+                    {/* DB-order */}
                     <Route path="orders" element={<DashboardOrders />} />
-                    <Route
-                        path="create/product"
-                        element={<DashboardCreateProduct />}
-                    />
-                    <Route
-                        path="update/order/:id"
-                        element={<DashboardUpdateOrder />}
-                    />
-                    <Route
-                        path="update/product/:id"
-                        element={<DashboardUpdateProduct />}
-                    />
-                    <Route
-                        path="update/user/:id"
-                        element={<DashboardUpdateUserRole />}
-                    />
+                        <Route
+                            path="update/order/:id"
+                            element={<DashboardUpdateOrder />}
+                        />
+                    
+                    {/* DB-product */}
+                    <Route path="products" element={<DashboardProducts />} />
+                        <Route
+                            path="create/product"
+                            element={<DashboardCreateProduct />}
+                        />
+                        <Route
+                            path="update/product/:id"
+                            element={<DashboardUpdateProduct />}
+                        />
+                    
+                    
+                    {/* DB-notification */}
                     <Route
                         path="notifications"
                         element={<DashboardNotifications />}
                     />
-                    <Route
-                        path="create/notification"
-                        element={<DashBoardCreateNotification />}
-                    />
-                    <Route
-                        path="update/notification/:id"
-                        element={<DashBoardUpdateNotification />}
-                    />
+                        <Route
+                            path="create/notification"
+                            element={<DashBoardCreateNotification />}
+                        />
+                        <Route
+                            path="update/notification/:id"
+                            element={<DashBoardUpdateNotification />}
+                        />
+                    
+                    {/* DB-category */}
                     <Route
                         path="categories"
                         element={<DashboardCategories />}
                     />
-                    <Route
-                        path="create/category"
-                        element={<DashBoardCreateCategory />}
-                    />
-                    <Route
-                        path="update/category/:id"
-                        element={<DashBoardUpdateCategory />}
-                    />
+                        <Route
+                            path="create/category"
+                            element={<DashBoardCreateCategory />}
+                        />
+                        <Route
+                            path="update/category/:id"
+                            element={<DashBoardUpdateCategory />}
+                        />
+
+                    {/* DB-manage */}
+                    <Route path="manage" element={<DashboardManage />} />
+                        <Route
+                            path="slide"
+                            element={<ManageSlide />}
+                        />
+                        {/* <Route
+                            path="info"
+                            element={<ManageInfo />}
+                        />
+                        <Route
+                            path="contact"
+                            element={<ManageContact />}
+                        /> */}
                 </Route>
                 <Route
                     path="account"

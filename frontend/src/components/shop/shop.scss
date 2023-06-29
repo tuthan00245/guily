@@ -3,6 +3,12 @@
     background-color: rgb(245,245,245);
   
 }
+.app__container .grid.wide{
+    max-width: none;
+    padding-left: calc(var(--header-height) - 20px);
+    padding-right: calc(var(--header-height) - 20px);
+}
+
 .app__content
 {
     padding-top: calc( var(--header-height) + 20px);
@@ -35,6 +41,14 @@
     display: block;
     margin: 0px;  
     
+}
+.filter{
+    background-color: var(--white-color);
+    position: relative;
+    border-radius: 1px;
+    display: block;
+    margin: 0px 0px 10px 10px ;
+    // padding-top: 20px;
 }
 .menu_1{
     display: none;

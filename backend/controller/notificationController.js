@@ -196,7 +196,7 @@ exports.pushNotificationToAllUser = catchAsyncError(async (req, res, next) => {
     const notificationId = await req.body.notificationId;
 
     const notification = await Notification.findOne({
-        id: notificationId,
+        _id: notificationId,
     }).populate(["user"]);
 
     const oneSignal = await OneSignal.find({}).populate(["user"]);

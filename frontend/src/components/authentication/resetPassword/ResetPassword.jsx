@@ -22,7 +22,7 @@ const ResetPassword = () => {
     e.preventDefault();
     try {
       dispatch(resetPassword({ token, password, confirmPassword })).unwrap();
-      history("/");
+      history("/account/login");
       toast.success("Đổi mật khẩu thành công");
     } catch (err) {
       toast.error("Đổi mật khẩu không thành công");

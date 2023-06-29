@@ -75,13 +75,13 @@ const CardSwiperDetail = ({ images }) => {
                 >
                     {images.map((item, index) => (
                         <SwiperSlide key={index}>
-                            <div className="product-images-slider-thumbs-wrapper">
+                            {/* <div className="product-images-slider-thumbs-wrapper">
                                 <img
                                     src={item.url}
                                     alt="product images"
                                     className="image--key"
                                 />
-                            </div>
+                            </div> */}
                         </SwiperSlide>
                     ))}
                 </Swiper>

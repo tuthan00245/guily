@@ -1,61 +1,62 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import "./dashboardUsers.scss";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import "./DashboardManage.scss";
 import DataTable from "react-data-table-component";
-import DataTableExtensions from "react-data-table-component-extensions";
+// import DataTableExtensions from "react-data-table-component-extensions";
 import "react-data-table-component-extensions/dist/index.css";
 import Loader from "../loader/Loader";
-import { useNavigate } from "react-router-dom";
-
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
-    deleteMutipleUser,
-    deleteSingleUser,
-    getAllUser,
-} from "../../redux/toolkits/userAdminSlice";
+    getProductRedux,
+    deleteSingleProduct,
+    deleteMutipleProduct,
+} from "../../redux/toolkits/productSlice";
 
-const DashboardUsers = () => {
+const DashboardReport = () => {
     const dispatch = useDispatch();
     const history = useNavigate();
+    const [products, setProducts] = useState([]);
+
     const [isLoading, setIsLoading] = useState(false);
-    const [keyFresh, setKeyFresh] = useState(0);
     const [countSelected, setCountSelected] = useState(0);
+    const [keyFresh, setKeyFresh] = useState(0);
     const [arrayId, setArrayId] = useState([]);
 
-    const [users, setUsers] = useState([]);
-
-    const { loading } = useSelector((state) => state.userAdminState);
+    const { loading } = useSelector((state) => state.productState);
 
     useEffect(() => {
-        const getUsers = async () => {
+        //get products
+        const getProducts = async () => {
+            let params = { resultPerPage: 1000 };
             try {
-                const data = await dispatch(getAllUser()).unwrap();
+                const product = await dispatch(
+                    getProductRedux(params)
+                ).unwrap();
+                setProducts(product.products);
                 setIsLoading(true);
-                setUsers(data.users);
-            } catch (error) {
-                console.log(error.response);
-            }
+            } catch (err) {}
         };
-        getUsers();
+        getProducts();
     }, [keyFresh]);
-
-    const handleDeleteUser = async (row) => {
+    
+    //delete product
+    const handleDeleteProduct = async (row) => {
         try {
-            await dispatch(deleteSingleUser(row._id)).unwrap();
+            await dispatch(deleteSingleProduct(row._id)).unwrap();
             setKeyFresh((oldv) => oldv + 1);
-            toast.success("Người dùng vừa được xóa thành công");
+            toast.success("Sản phẩm vừa xóa thành công");
             setCountSelected(0);
         } catch (error) {
-            toast.error("Người dùng chưa được xóa!");
+            console.log(error.response.data.message);
         }
     };
 
     const columns = [
         {
-            name: "Ảnh đại diện",
+            name: "Ảnh",
             selector: (row) => {
                 return (
                     <img
@@ -64,36 +65,32 @@ const DashboardUsers = () => {
                             height: "70px",
                             marginTop: "10px",
                             marginBottom: "10px",
-                            borderRadius: "50%",
                         }}
-                        src={
-                            row?.avatar?.url ||
-                            "https://z-p3-scontent.fsgn10-2.fna.fbcdn.net/v/t1.30497-1/84628273_176159830277856_972693363922829312_n.jpg?stp=c15.0.50.50a_cp0_dst-jpg_p50x50&_nc_cat=1&ccb=1-7&_nc_sid=12b3be&_nc_ohc=bm2H0Ny48SMAX_UKA8T&_nc_ht=z-p3-scontent.fsgn10-2.fna&edm=AP4hL3IEAAAA&oh=00_AfBe5AOf2CTY-n1ykqW9RVvalJk9uS_DZ8Mx8jby0SHHBg&oe=64905559"
-                        }
+                        src={row?.images[0]?.url}
                         alt=""
                     />
                 );
             },
-            style: (row) => ({ flex: "unset", width: "200px" }),
+            style: (row) => ({ flex: "unset", width: "150px" }),
         },
         {
-            name: "Tên",
-            selector: (row) => row.name,
+            name: "Tên sản phẩm",
+            selector: (row) => row.name.toString(),
+            sortable: true,
+            style: (row) => ({ flex: "unset", width: "340px" }),
+        },
+        {
+            name: "Số lượng kho",
+            selector: (row) => row.Stock.toString(),
             sortable: true,
         },
         {
-            name: "Email",
-            selector: (row) => row.email,
-            sortable: true,
-        },
-        {
-            name: "Quyền",
-            selector: (row) => (row.role == "admin" ? "ADMIN" : "USER"),
-            sortable: true,
-        },
-        {
-            name: "Tham gia lúc",
-            selector: (row) => row.createAt.slice(0, 10),
+            name: "Số lượng bán",
+            selector: (row) => {
+                return `${Math.floor(row.price)
+                    .toString()
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}đ`.toString();
+            },
             sortable: true,
         },
         {
@@ -101,19 +98,19 @@ const DashboardUsers = () => {
             selector: (row) => (
                 <div className="action--item">
                     <button
-                        style={{ backgroundColor: "#169c9f" }}
                         className="btn"
+                        style={{ backgroundColor: "#169c9f" }}
                         onClick={() => {
-                            history(`/dashboard/update/user/${row._id}`);
+                            history(`/dashboard/update/product/${row._id}`);
                         }}
                     >
-                        Xem
+                        Sửa
                     </button>
                     <button
-                        style={{ backgroundColor: "#169c9f" }}
                         className="btn"
+                        style={{ backgroundColor: "#169c9f" }}
                         onClick={() => {
-                            handleDeleteUser(row);
+                            handleDeleteProduct(row);
                         }}
                     >
                         Xóa
@@ -122,12 +119,6 @@ const DashboardUsers = () => {
             ),
         },
     ];
-
-    const tableData = {
-        columns,
-        data: users,
-    };
-
     const handleSelectedChange = (state) => {
         setCountSelected(state.selectedCount);
         let array = [];
@@ -137,49 +128,56 @@ const DashboardUsers = () => {
         setArrayId(array);
     };
 
-    const handleDeleteMutiple = async () => {
-        try {
-            await dispatch(deleteMutipleUser({ id: arrayId })).unwrap();
-            setKeyFresh((oldv) => oldv + 1);
-            toast.success("Người dùng vừa được xóa thành công");
+    // const tableData = {
+    //     columns,
+    //     data: products,
+    // };
 
+    const handleDeleteMutiple = async () => {
+        let params = {
+            id: arrayId,
+        };
+        try {
+            await dispatch(deleteMutipleProduct(params)).unwrap();
+            setKeyFresh((oldv) => oldv + 1);
+            toast.success("Sản phẩm vừa xóa thành công");
             setCountSelected(0);
         } catch (error) {
-            toast.error("Người dùng chưa được xóa!");
+            console.log(error.response.data.message);
         }
     };
     return (
         <div className="col l-10">
-            {
-                // <DataTableExtensions {...tableData} >
+            {/* {
+                //<DataTableExtensions {...tableData}>
                 <DataTable
-                    title="Danh sách người dùng"
+                    title="Danh sách sản phẩm"
                     columns={columns}
-                    data={users}
+                    data={products}
                     pagination
                     fixedHeader
-                    fixedHeaderScrollHeight="400px"
+                    fixedHeaderScrollHeight="500px"
                     selectableRows
                     selectableRowsHighlight={false}
                     onSelectedRowsChange={handleSelectedChange}
                     actions={
                         <div>
                             <button
-                                style={{ backgroundColor: "#169c9f" }}
                                 className="btn"
+                                style={{ backgroundColor: "#169c9f" }}
                                 onClick={handleDeleteMutiple}
                             >
                                 Xóa ({countSelected}){" "}
                             </button>
                         </div>
                     }
-                    dense
                 />
-                // </DataTableExtensions>
+                //</div></DataTableExtensions>
             }
-            {loading && <Loader />}
+            {loading && <Loader />} */}
+            
         </div>
     );
-};
+}
 
-export default DashboardUsers;
+export default DashboardReport

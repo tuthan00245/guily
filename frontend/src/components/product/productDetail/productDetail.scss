@@ -3,8 +3,17 @@
 .app-detail {
   background-color: rgb(245, 245, 245);
   padding-bottom: 2rem;
+  // .grid.wide{
+  //   max-width: none;
+  //   padding-left: calc(var(--header-height) - 20px);
+  //   padding-right: calc(var(--header-height) - 20px);
+  // }
 }
-
+// .app__detail .grid.wide{
+//   max-width: none;
+//   padding-left: calc(var(--header-height) - 20px);
+//   padding-right: calc(var(--header-height) - 20px);
+// }
 .reviews {
   width: 100%;
 
@@ -389,7 +398,7 @@
 
       &--item {
         padding: 15px 20px;
-        background: #fafafa;
+        // background: #fafafa;
         margin-right: 10px;
         border-radius: 5px;
         display: flex;

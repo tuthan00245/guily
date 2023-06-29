@@ -17,6 +17,7 @@ const DashboardUpdateOrder = () => {
     const [order, setOrder] = useState([]);
     const [keyFresh, setKeyFresh] = useState(0);
     const [orderItems, setOrderItems] = useState([]);
+    const [orderUsers, setOrderUsers] = useState([]);
     const [time, setTime] = useState("");
     const [shippingInfo, setShippingInfo] = useState([]);
     const [status, setStatus] = useState("");
@@ -29,9 +30,12 @@ const DashboardUpdateOrder = () => {
             setOrder(data.order);
             setTime(data.order.createdAt.slice(0, 10));
             setOrderItems(data.order.orderItems);
+            setOrderUsers(data.order.user);
             setShippingInfo(data.order.shippingInfo);
+
         };
         getOrder();
+        console.log(order);
     }, [keyFresh]);
 
     const handleUpdate = async () => {
@@ -96,8 +100,10 @@ const DashboardUpdateOrder = () => {
                         </div>
                         <div className="info--all">
                             <div className="info--all__heading">
-                                <h2>Thông tin đơn hàng</h2>
+                                <h2>Thông tin khách hàng</h2>
                                 <ul>
+                                    {/* <li>Họ Tên: {order?order.user.name:null}</li> */}
+                                    {/* <li>Email: {order.user.email}</li> */}
                                     <li>Địa chỉ: {shippingInfo.address}</li>
                                     <li>
                                         Số điện thoại: {shippingInfo.phoneNo}
@@ -111,7 +117,7 @@ const DashboardUpdateOrder = () => {
                                         </span>
                                     </li>
                                 </ul>
-                                <h2>Thông tin sản phẩm</h2>
+                                <h2>Chi Phí</h2>
                                 <ul>
                                     <li>
                                         Tạm tính (sản phẩm){" "}

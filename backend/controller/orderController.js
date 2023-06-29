@@ -245,10 +245,7 @@ exports.updateOrder = catchAsyncError(async (req, res, next) => {
             break;
     }
 
-    const oneSignal = await OneSignal.findOne({
-        user: order.user._id.toString(),
-    }).populate(["user"]);
-
+   
     const data = {
         orderId: order.id + "",
         type: "order",
@@ -268,6 +265,10 @@ exports.updateOrder = catchAsyncError(async (req, res, next) => {
     };
 
     const notificationSave = await Notification.create(notification);
+
+    const oneSignal = await OneSignal.findOne({
+        user: order.user,
+    }).populate(["user"]);
 
     if (oneSignal) {
         await OneSignalUtil.pushNotification({

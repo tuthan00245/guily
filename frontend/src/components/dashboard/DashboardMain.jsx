@@ -169,7 +169,7 @@ const DashboardMain = () => {
     return (
         <>
             <div className="db_container">
-                <div className="main_wrap">
+                {/* <div className="main_wrap">
                     <div className="row">
                         <div className="col-md-5">
                             <div className="portlet">
@@ -228,7 +228,7 @@ const DashboardMain = () => {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
                 <div className="col l-10">
                     {isLoading ? (
                         <>

@@ -69,8 +69,6 @@ const DashboardUpdateUserRole = () => {
                                         ? user.phone
                                         : "Chưa có số điện thoại"}
                                 </h4>
-                            </div>
-                            <div className="user--info__more">
                                 <h4>
                                     Địa chỉ:{" "}
                                     {address.length > 0
@@ -82,12 +80,14 @@ const DashboardUpdateUserRole = () => {
                                     {user.role == "admin" ? "ADMIN" : "USER"}
                                 </h4>
                             </div>
+                            {/* <div className="user--info__more">
+                            </div> */}
                         </div>
                     </div>
                 </div>
             </div>
             <div className="col l-2 select-status">
-                <h1>Cập nhật trạng thái</h1>
+                <h1>Cập nhật quyền hạn</h1>
                 <select
                     name="update"
                     id=""

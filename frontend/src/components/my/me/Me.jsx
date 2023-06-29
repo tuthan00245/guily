@@ -70,7 +70,7 @@ const Me = () => {
                                         Địa chỉ
                                     </Link>
                                 </li>
-                                <li className="control--account__list--item">
+                                {/* <li className="control--account__list--item">
                                     <Link
                                         to="order"
                                         className={
@@ -81,7 +81,7 @@ const Me = () => {
                                     >
                                         Đơn hàng
                                     </Link>
-                                </li>
+                                </li> */}
                                 <li className="control--account__list--item">
                                     <Link
                                         className={
@@ -109,7 +109,16 @@ const Me = () => {
                                     <Link to="/mycard">Giỏ hàng</Link>
                                 </li>
                                 <li className="control--account__list--item">
-                                    <Link to="/myorder">Đơn hàng của tôi</Link>
+                                <Link
+                                        to="order"
+                                        className={
+                                            3 == active ? ` show--active` : ""
+                                        }
+                                        id={3}
+                                        onClick={handleSetActive}
+                                    >
+                                        Đơn hàng
+                                    </Link>
                                 </li>
                             </ul>
                         </div>

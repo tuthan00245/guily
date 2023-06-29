@@ -30,7 +30,7 @@ const ProductCard = ({ product }) => {
                         }')`,
                     }}
                 ></div>
-                <h4 className="home__product--item-name">{product.name}</h4>
+                <h4 className="home__product--item-name">{product.name.toUpperCase()}</h4>
                 <div className="home__product--item-price">
                     <span className="home__product--item-price-old">
                         {product.price
@@ -48,31 +48,23 @@ const ProductCard = ({ product }) => {
                     </span>
                 </div>
                 <div className="home__product--item-action">
-                    {/* <Rating  {...{
-            size: "small",
-            value: product.ratings || 0,
-            readOnly: true,
-            precision: 0.5,
-          }} /> */}
-                    <span className="home__product--item-sold">
+                    {/* <span className="home__product--item-sold">
                         {product.sold} đã bán
-                    </span>
+                    </span> */}
                 </div>
-                {/* <div className="home__product--item-favourite">
-          <div className="home__product--item-favourite-love">
-            <i className="fas fa-check"></i>
-            Yêu thích
-          </div>
-          <div className="home__product--item-favourite-plus">+</div>
-        </div> */}
-                <div className="home__product--item-sale-off">
-                    <span className="home__product--item-sale-off--percent">
-                        {product.sale}%
-                    </span>
-                    <span className="home__product--item-sale-off--lable">
-                        GIẢM
-                    </span>
-                </div>
+                
+                {product.sale>0?(
+                    <div className="home__product--item-sale-off">
+                        <span className="home__product--item-sale-off--percent">
+                            {product.sale}%
+                        </span>
+                        <span className="home__product--item-sale-off--lable">
+                            GIẢM
+                        </span>
+                    </div>
+                ):(
+                    <div></div>
+                )}
             </Link>
         </div>
     );

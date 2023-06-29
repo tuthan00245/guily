@@ -5,32 +5,27 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import "./heroSlide.scss";
 
-
-
-const data = ["https://asset.cloudinary.com/cloudformearncdct/06da4cdd46395fdfe81637f7124449ce",
-"https://asset.cloudinary.com/cloudformearncdct/60156bc097e3158efcae72bebb8b71de",
-"https://asset.cloudinary.com/cloudformearncdct/c4a5c61e98711f49c0018647d1d0eaec"
-];
 const movieItems = [
-  "https://res.cloudinary.com/nghia285diem/image/upload/v1655100632/images_frontend/hero-1_bf7gkc.jpg",
-  "https://res.cloudinary.com/nghia285diem/image/upload/v1655100632/images_frontend/hero-1_bf7gkc.jpg",
-  "https://res.cloudinary.com/nghia285diem/image/upload/v1655100635/images_frontend/hero-2_sns3xy.jpg",
+  "https://cdn.shopify.com/s/files/1/1679/6063/articles/bmw-aurora-concept-1-thumb-960xauto-94195_1600x750.jpg?v=1545695578",
+  "https://as2.ftcdn.net/v2/jpg/05/73/42/09/1000_F_573420967_tTjM82Oa0aDnTRo3BI2wn3Bxl6lHEQzb.jpg",
+  "https://motorstore.vn/wp-content/uploads/2022/10/phu-kien-phuot.jpg",
 ];
 const HeroSlide = () => {
   return (
     
     <div className="hero-slide">
       <Swiper
-                modules={[Autoplay, Thumbs, Navigation]}
-                className="slides"
-                spaceBetween={12}
-                speed={1000}
-                tag="div"
-                autoplay={{
-                    delay: 2000,
-                    disableOnInteraction: false,
-                }}
-            >
+        style={{paddingTop: '4px',height: '900px'}}
+        modules={[Autoplay, Thumbs, Navigation]}
+        className="slides"
+        spaceBetween={12}
+        speed={1000}
+        tag="div"
+        autoplay={{
+            delay: 2000,
+            disableOnInteraction: false,
+        }}
+      >
 
         {movieItems.map((item, i) => (
           <SwiperSlide key={i}>

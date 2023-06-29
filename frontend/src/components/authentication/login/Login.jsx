@@ -20,6 +20,7 @@ const Login = () => {
     localStorage.removeItem("isAuthenticated");
 
     const [email, setEmail] = useState("");
+    const [otp, setOTP] = useState("");
     const [password, setPassword] = useState("");
 
     const history = useNavigate();
@@ -40,8 +41,8 @@ const Login = () => {
                     axios.defaults.headers = {
                         token: result.token,
                     };
-
-                    history("/");
+                    const role  = result.user.role;
+                    role === 'admin'?history("/dashboard/main"):history("/");
                     dispatch(getUser());
                     toast.success("Đăng nhập thành công!");
                 });
@@ -50,28 +51,34 @@ const Login = () => {
             toast.error("Đăng nhập thất bại!");
         }
     };
-
-    const handleLoginFace = async (res) => {
-        try {
-            const { data } = await axios.post("/api/v1/login/facebook", {
-                facebookId: res.id,
-                email: res.email,
-                name: res.name,
-                avatar: res.picture.data.url,
-            });
-            localStorage.setItem("isAuthenticated", JSON.stringify(data.token));
-            axios.defaults.headers = {
-                token: data.token,
-            };
-            await postOneSignalSub(localStorage.getItem("oneSignalId.bmd"));
-            history("/");
-            dispatch(getUser());
-            toast.success("Đăng nhập thành công!");
-        } catch (err) {
-            console.log(err);
-            toast.error("Đăng nhập thất bại!");
-        }
+    function randomNumberInRange(min, max) {
+        // 👇️ get number between min (inclusive) and max (inclusive)
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+    const handleClick = () => {
+        setOTP(randomNumberInRange(1,9999));
     };
+    // const handleLoginFace = async (res) => {
+    //     try {
+    //         const { data } = await axios.post("/api/v1/login/facebook", {
+    //             facebookId: res.id,
+    //             email: res.email,
+    //             name: res.name,
+    //             avatar: res.picture.data.url,
+    //         });
+    //         localStorage.setItem("isAuthenticated", JSON.stringify(data.token));
+    //         axios.defaults.headers = {
+    //             token: data.token,
+    //         };
+    //         await postOneSignalSub(localStorage.getItem("oneSignalId.bmd"));
+    //         history("/");
+    //         dispatch(getUser());
+    //         toast.success("Đăng nhập thành công!");
+    //     } catch (err) {
+    //         console.log(err);
+    //         toast.error("Đăng nhập thất bại!");
+    //     }
+    // };
 
     return (
         // <div className='login'>
@@ -128,6 +135,20 @@ const Login = () => {
                             Quên mật khẩu?
                         </Link>
                     </div>
+                    <div className="form-group">
+                        <div className="form-group__align">
+                            <label htmlFor="email">OTP:</label>
+                        </div>
+                        <input
+                            type="number"
+                            required
+                            id="otp"
+                            placeholder="Nhập email"
+                            onChange={(e) => setEmail(e.target.value)}
+                            value={email}
+                            tabIndex={1}
+                        />
+                    </div>
                     <div className="form-submit">
                         <button
                             onClick={handleSubmit}
@@ -144,7 +165,7 @@ const Login = () => {
                             Đăng kí
                         </Link>
                     </span>
-                    <div
+                    {/* <div
                         style={{
                             width: "100%",
                             display: "flex",
@@ -180,7 +201,7 @@ const Login = () => {
                             }}
                             children="Facebook"
                         />
-                    </div>
+                    </div> */}
                 </form>
                 {loading && <Loader />}
             </div>

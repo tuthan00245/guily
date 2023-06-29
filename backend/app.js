@@ -6,16 +6,17 @@ const fileUpload = require("express-fileupload");
 const bodyParser = require("body-parser");
 const cookiParser = require("cookie-parser");
 const errorMiddleware = require("./middleware/error");
+const nodemailer = require('nodemailer');
 
 //create app server using express
 const app = express();
 
-//create config to file .env
-// const dotenv = require('dotenv')
-// dotenv.config({
-//   path: __dirname + '/.env'
-// });
-// dotenv.config()
+// create config to file .env
+const dotenv = require('dotenv')
+dotenv.config({
+  path: __dirname + '/.env'
+});
+dotenv.config()
 
 // import route for api
 const product = require("./routes/productRoute");
@@ -66,6 +67,32 @@ app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname, "../frontend/build/index.html"));
 });
 
+let transporter = nodemailer.createTransport({
+    service:process.env.SMPT_SERVICE,
+    auth:{
+        user:process.env.SMPT_MAIL,
+        pass:process.env.SMPT_PASSWORD
+    },
+    tls:{
+        rejectUnauthorized:false,
+    }
+})
+let emailOptions = {
+    from:process.env.SMPT_MAIL,
+    to:'vuhainam14753@gmail.com',
+    subject:process.env.SMPT_SUBJECT,
+    text: 'FIRST OTP CONNECTION',
+}
+transporter.sendMail(emailOptions, (err, success) => {
+    if(err) {
+        console.log(err)
+    }else {
+        console.log('email sent successfully')
+    }
+});
+app.get("/", (req, res) => {
+    res.send('hello world');
+})
 //Middleware error hander
 app.use(errorMiddleware);
 

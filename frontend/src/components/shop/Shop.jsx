@@ -59,8 +59,9 @@ const Shop = () => {
         getProducts(category, currentPage, sort);
         const getCategories = async () => {
             try {
-                const { data } = await axios.get("/api/v1/admin/categories");
+                const { data } = await axios.get("/api/v1/categories");
                 setCategories(data.categories);
+                console.log(categories);
             } catch (error) {
                 console.log(error.response.data.message);
             }
@@ -109,25 +110,26 @@ const Shop = () => {
                                     >
                                         {" "}
                                         <span className="category__heading--item-link">
-                                            ALL
+                                            TẤT CẢ
                                         </span>
                                     </li>
                                     {
                                         categories.length > 0
                                         ? categories.map((cate, i) => (
-                                            cate.brand ===''?
+                                            cate.brand.length===0?
                                             <li
                                                   key={i}
                                                   onClick={() => {
+                                                    // setCategory(cate._id);
                                                     // document.getElementsByClassName("menu_1 category__heading--list")[100].style.display = "block";                                                   //   setCategory(cate._id);
-                                                    //   setCurrentPage(1);
+                                                    setCurrentPage(1);
                                                   }}
                                                   className="category__heading--item "
                                               >
                                                   <span className="category__heading--item-link">
-                                                      {cate.title}
+                                                      {cate.title.toUpperCase()}
                                                   </span>
-                                                   {categories.map((cate1,j) => (
+                                                   {/* {categories.map((cate1,j) => (
                                                     cate1.brand === cate._id?
                                                     <ul className="menu_1 category__heading--list">
                                                         <li
@@ -141,11 +143,45 @@ const Shop = () => {
                                                             <span className="category__heading--item-link">{cate1.title}</span>
                                                         </li>
                                                     </ul>:"" 
-                                                ))} 
-                                              </li>:''
+                                                ))}  */}
+                                              </li>
+                                              :''
+                                            //   <li
+                                            //         key={i}
+                                            //         onClick={() => {
+                                            //         // document.getElementsByClassName("menu_1 category__heading--list")[100].style.display = "block";                                                   //   setCategory(cate._id);
+                                            //         setCurrentPage(1);
+                                            //         }}
+                                            //         className="category__heading--item "
+                                            //     >
+                                            //         <span className="category__heading--item-link">
+                                            //             {cate.title}
+                                            //         </span>
+                                            //         {categories.map((cate1,j) => (
+                                            //         cate1.brand === cate._id?
+                                            //             <ul className="menu_1 category__heading--list">
+                                            //                 <li
+                                            //                     key={j}
+                                            //                     onClick={() =>{
+                                            //                         setCategory(cate1._id);
+                                            //                         setCurrentPage(1);
+                                            //                     }}
+                                            //                     className="category__heading--item"
+                                            //                 >
+                                            //                     <span className="category__heading--item-link">{cate1.title}</span>
+                                            //                 </li>
+                                            //             </ul>:"" 
+                                            //         ))} 
+                                            //     </li>
                                           ))
                                         : ""}
                                 </ul>
+                            </nav>
+                            <nav className="filter">
+                                <h3 className="category__heading">
+                                    <i className="fas fa-list category__heading-icon"></i>
+                                    filter
+                                </h3>
                             </nav>
                         </div>
                         <div className="col l-10 m-12 c-12  ">

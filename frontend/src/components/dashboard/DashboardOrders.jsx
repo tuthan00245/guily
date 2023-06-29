@@ -13,6 +13,7 @@ import {
     deleteSingleOrder,
     getAllOrders,
 } from "../../redux/toolkits/orderSlice";
+
 import { convertOrderStatus } from "../../utils/convertOrderStatus";
 
 const DashboardOrders = () => {
@@ -38,7 +39,7 @@ const DashboardOrders = () => {
         };
         getOrders();
     }, [keyFresh]);
-
+    
     const handleDeleteOrder = async (row) => {
         try {
             await dispatch(deleteSingleOrder(row._id)).unwrap();
@@ -50,11 +51,10 @@ const DashboardOrders = () => {
             toast.error("Đơn hàng chưa được xóa!");
         }
     };
-
     const columns = [
         {
             name: "Id",
-            selector: (row) => row._id,
+            selector: (row) => row.user,
         },
         {
             name: "Số sản phẩm",
@@ -92,7 +92,7 @@ const DashboardOrders = () => {
                             history(`/dashboard/update/order/${row._id}`);
                         }}
                     >
-                        Sửa
+                        Xem
                     </button>
                     <button
                         style={{ backgroundColor: "#169c9f" }}

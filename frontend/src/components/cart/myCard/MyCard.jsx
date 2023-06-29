@@ -265,7 +265,7 @@ const MyCard = () => {
                             đ
                           </span>
                         </div>
-                        <div className="cal-discount">
+                        {/* <div className="cal-discount">
                           <input
                             type="text"
                             placeholder="Mã giảm giá"
@@ -277,7 +277,7 @@ const MyCard = () => {
                           <button className="btn" onClick={handleRefresh}>
                             ÁP DỤNG
                           </button>
-                        </div>
+                        </div> */}
                         <div className="cal--item">
                           <h3>Tổng cộng</h3>
                           <span className="cal--item-active">
